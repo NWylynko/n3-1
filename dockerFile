@@ -3,6 +3,6 @@ WORKDIR /var/www/math
 COPY . .
 RUN yarn install
 RUN yarn prisma generate
-RUN yarn build
+RUN yarn tsc
 ENV NODE_ENV production
-CMD yarn start
+CMD yarn node dist
