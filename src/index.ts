@@ -52,8 +52,6 @@ const main = async (seed: number) => {
 
   console.log("result is ", result)
 
-  pub.publish(Buffer.from(JSON.stringify({ seed: result })));
-
   return;
 
 }
@@ -144,11 +142,9 @@ const saveResultToDatabase = async (seed: number, result: number) => {
 }
 
 const addResultToQueue = async (result: number) => {
-  //
+  pub.publish(Buffer.from(JSON.stringify({ seed: result })));
 }
 
 const findSeedInDatabase = async (seed: number): Promise<SeedObject | null> => {
   return prisma.math.findFirst({ where: { seed }})
 }
-
-main(5)
