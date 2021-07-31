@@ -1,6 +1,8 @@
 import 'source-map-support/register';
 import 'dotenv/config'
 
+import Fastify from "fastify";
+
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
@@ -148,3 +150,9 @@ const addResultToQueue = async (result: number) => {
 const findSeedInDatabase = async (seed: number): Promise<SeedObject | null> => {
   return prisma.math.findFirst({ where: { seed }})
 }
+
+const app = Fastify({ logger: true });
+
+app.get('/', async () => ({ ping: 'pong' }))
+
+app.listen(process.env.PORT || 8080, '0.0.0.0')

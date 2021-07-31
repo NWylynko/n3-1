@@ -5,4 +5,5 @@ RUN yarn install
 RUN yarn prisma generate
 RUN yarn tsc
 ENV NODE_ENV production
+EXPOSE 8080
 CMD yarn node dist
